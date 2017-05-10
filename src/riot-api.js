@@ -22,16 +22,13 @@ class RiotApi {
    *
    * @memberof RiotApi
    */
-  constructor({apikey, redisConfig}) {
+  constructor({apikey, redisConfig = {host: '127.0.0.1', port: 6379}}) {
     debug('Init');
 
     if (!apikey) throw new EmptyApiKey();
     this.apikey = apikey;
 
-    this.redisConfig = redisConfig || ({
-      host: '127.0.0.1',
-      port: 6379,
-    });
+    this.redisConfig = redisConfig;
 
     this.req = request.defaults({
       headers: {'X-Riot-Token': this.apikey},
