@@ -2,6 +2,12 @@
 
 Riot API Wrapper with Redis caching
 
+## Installation
+
+```
+npm install lolstats-riotapi-redis
+```
+
 ## Usage
 
 ```javascript
