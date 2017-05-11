@@ -1,3 +1,5 @@
 const RiotApi = require('./src/riot-api');
+const RiotApiErrors = require('./src/riot-api.errors');
 
-module.exports = RiotApi;
+exports.RiotApiErrors = RiotApiErrors;
+exports.RiotApi = RiotApi;

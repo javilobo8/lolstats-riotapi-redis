@@ -27,7 +27,7 @@ class StaticDataV3 {
   champions(region, options) {
     const query = queryString.stringify(options, {encode: true});
     const server = getServer(region);
-    const uri = `https://${server.host}/lol/static-data/v3/champions${query}`;
+    const uri = `https://${server.host}/lol/static-data/v3/champions?${query}`;
     return this.request(uri, this.expiration);
   }
 }
