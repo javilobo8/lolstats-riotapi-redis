@@ -3,9 +3,9 @@ module.exports = {
   "plugins": [
     "import"
   ],
-//   "env": {
-//     "mocha": true
-//   },
+  "env": {
+    "mocha": true
+  },
   "rules": {
     "object-curly-spacing": 0,
     "global-require": 0,
