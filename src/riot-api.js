@@ -10,6 +10,7 @@ const cacheExp = require('./cache-exp');
 const SummonerV3 = require('./modules/summoner-v3');
 const LeagueV3 = require('./modules/league-v3');
 const ChampionMasteryV3 = require('./modules/champion-mastery-v3');
+const StaticDataV3 = require('./modules/static-data-v3');
 
 Promise.promisifyAll(redis.RedisClient.prototype);
 Promise.promisifyAll(redis.Multi.prototype);
@@ -44,6 +45,8 @@ class RiotApi {
       this.handleRequest.bind(this), cacheExp.LEAGUE);
     this.championmastery = new ChampionMasteryV3(
       this.handleRequest.bind(this), cacheExp.CHAMPIONMASTERY);
+    this.staticdata = new StaticDataV3(
+      this.handleRequest.bind(this), cacheExp.STATICDATA);
   }
 
   /**
