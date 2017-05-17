@@ -8,11 +8,7 @@ describe('StaticDataV3', () => {
 
   describe('champions', () => {
     it('should return all champions', (done) => {
-      const options = {
-        champListData: 'altimages',
-        dataById: true,
-      };
-      api.staticdata.champions('EUW', options)
+      api.staticdata.champions('EUW')
         .then((body) => {
           expect(body).to.be.an('object');
           done();
