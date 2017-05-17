@@ -1,6 +1,6 @@
 module.exports = {
-  STATICDATA: 86400000, // 24h
-  SUMMONER: 360000, // 1h
-  LEAGUE: 30000, // 5 min
-  CHAMPIONMASTERY: 30000, // 5 min
+  STATICDATA: 864000, // 24h
+  SUMMONER: 3600, // 1h
+  LEAGUE: 300, // 5 min
+  CHAMPIONMASTERY: 300, // 5 min
 };
