@@ -24,7 +24,7 @@ class StaticDataV3 {
    *
    * @memberof StaticDataV3
    */
-  champions(region, options = {champListData: 'altimages', dataById: true}) {
+  champions(region, options = {champListData: 'image', dataById: true}) {
     const query = queryString.stringify(options, {encode: true});
     const server = getServer(region);
     const uri = `https://${server.host}/lol/static-data/v3/champions?${query}`;
