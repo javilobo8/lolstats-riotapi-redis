@@ -24,20 +24,24 @@ class RiotApi {
    * @memberof RiotApi
    */
   constructor({apikey, redisConfig = {host: '127.0.0.1', port: 6379}}) {
-    debug('Init');
+    debug('init');
 
-    if (!apikey) throw new EmptyApiKey();
+    if (!apikey) {
+      throw new EmptyApiKey();
+    }
     this.apikey = apikey;
-
     this.redisConfig = redisConfig;
-
     this.req = request.defaults({
-      headers: {'X-Riot-Token': this.apikey},
+      headers: {
+        'X-Riot-Token': this.apikey,
+      },
     });
 
-    debugRedis('Connecting to Redis');
+    debugRedis('connecting to Redis');
     this.cache = redis.createClient();
-    this.cache.on('ready', () => debugRedis('connected to Redis'));
+    this.cache.on('ready', () => {
+      debugRedis('connected to Redis');
+    });
 
     this.summoner = new SummonerV3(
       this.handleRequest.bind(this), cacheExp.SUMMONER);
@@ -61,7 +65,12 @@ class RiotApi {
   handleRequest(uri, expiration) {
     debug(`handleRequest ${uri}}`);
     return this.cache.getAsync(uri)
-      .then((res) => res ? JSON.parse(res) : this.askRiot(uri, expiration));
+      .then((res) => {
+        if (res) {
+          return JSON.parse(res);
+        }
+        return this.askRiot(uri, expiration);
+      });
   }
 
   /**
@@ -76,20 +85,15 @@ class RiotApi {
   askRiot(uri, expiration) {
     return new Promise((resolve, reject) => {
       this.req({uri}, (error, response, body) => {
-        if (error) reject(error);
-
-        try {
-          const json = JSON.parse(body);
-
-          this.cache.setexAsync(uri, expiration, body)
-            .then(() => {
-              debugRedis(`Saved ${uri}`);
-            });
-
-          resolve(json);
-        } catch (jsonError) {
-          reject(jsonError);
+        if (error) {
+          reject(error);
+          return;
         }
+        this.cache.setexAsync(uri, expiration, body)
+          .then(() => debugRedis(`saved ${uri}`))
+          .then(() => JSON.parse(body))
+          .then(resolve)
+          .catch(reject);
       });
     });
   }
