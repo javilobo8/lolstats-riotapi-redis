@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/lolstats-riotapi-redis.svg)](https://badge.fury.io/js/lolstats-riotapi-redis)
+
 # lolstats-riotapi-redis
 
 Riot API Wrapper with Redis caching
