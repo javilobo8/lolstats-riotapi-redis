@@ -1,6 +1,6 @@
 {
   "name": "lolstats-riotapi-redis",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Riot API wrapper with redis caching",
   "main": "index.js",
   "scripts": {
