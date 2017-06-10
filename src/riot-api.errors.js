@@ -24,7 +24,35 @@ class RegionNotFound extends Error {
   }
 }
 
+/**
+ * SummonerNameNotFound
+ *
+ * @class SummonerNameNotFound
+ * @extends {Error}
+ */
+class SummonerNameNotFound extends Error {
+  constructor() {
+    super('SummonerName not found');
+    this.name = this.constructor.name;
+  }
+}
+
+/**
+ * SummonerIdNotFound
+ *
+ * @class SummonerIdNotFound
+ * @extends {Error}
+ */
+class SummonerIdNotFound extends Error {
+  constructor() {
+    super('SummonerId not found');
+    this.name = this.constructor.name;
+  }
+}
+
 module.exports = {
   EmptyApiKey,
   RegionNotFound,
+  SummonerNameNotFound,
+  SummonerIdNotFound,
 };
