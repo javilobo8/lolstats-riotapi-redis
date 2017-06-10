@@ -3,4 +3,5 @@ module.exports = {
   SUMMONER: 3600, // 1h
   LEAGUE: 300, // 5 min
   CHAMPIONMASTERY: 300, // 5 min
+  MASTERIES: 5, // 5 sec
 };
