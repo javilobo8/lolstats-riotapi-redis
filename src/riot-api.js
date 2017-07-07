@@ -66,7 +66,6 @@ class RiotApi {
    * @memberof RiotApi
    */
   handleRequest(uri, expiration) {
-    debug(`handleRequest ${uri}}`);
     return this.cache.getAsync(uri)
       .then((res) => {
         if (res) {
@@ -86,11 +85,15 @@ class RiotApi {
    * @memberof RiotApi
    */
   askRiot(uri, expiration) {
+    console.log(`GET ${uri} => [${this.apikey}] => EXP: ${expiration}`);
     return new Promise((resolve, reject) => {
       this.req({uri}, (error, response, body) => {
         if (error) {
           reject(error);
           return;
+        }
+        if (response.statusCode !== 200) {
+          reject(response);
         }
         this.cache.setexAsync(uri, expiration, body)
           .then(() => debugRedis(`saved ${uri}`))

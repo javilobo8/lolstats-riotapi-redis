@@ -4,8 +4,6 @@ const {RiotApi} = require('../../');
 describe('StaticDataV3', () => {
   const api = new RiotApi({apikey: process.env.APIKEY});
 
-  beforeEach((done) => setTimeout(done, 1500));
-
   describe('champions', () => {
     it('should return all champions', (done) => {
       api.staticdata.champions('EUW')

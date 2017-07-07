@@ -4,8 +4,6 @@ const {RiotApi} = require('../../');
 describe('SummonerV3', () => {
   const api = new RiotApi({apikey: process.env.APIKEY});
 
-  beforeEach((done) => setTimeout(done, 1500));
-
   describe('byName', () => {
     it('should return summoner object', (done) => {
       api.summoner.byName('EUW', 'Lobo Bot')

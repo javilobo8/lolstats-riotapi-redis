@@ -4,8 +4,6 @@ const {RiotApi} = require('../../');
 describe('MasteriesV3', () => {
   const api = new RiotApi({apikey: process.env.APIKEY});
 
-  beforeEach((done) => setTimeout(done, 1500));
-
   describe('bySummonerId', () => {
     it('should return all summoner masteries', (done) => {
       api.masteries.bySummonerId('EUW', 40220583)
