@@ -39,7 +39,7 @@ class RiotApi {
     });
 
     debugRedis('connecting to Redis');
-    this.cache = redis.createClient();
+    this.cache = redis.createClient(redisConfig);
     this.cache.on('ready', () => {
       debugRedis('connected to Redis');
     });
